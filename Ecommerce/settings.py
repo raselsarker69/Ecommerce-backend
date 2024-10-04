@@ -24,10 +24,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = True
 
 # csrf trusted origin added
-ALLOWED_HOSTS = [
-    'localhost',  
-    'ecommerce-backend-uqig.onrender.com',  
-]
+ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = ['https://ecommerce-backend-uqig.onrender.com', 'https://*.127.0.0.1']
 
 
