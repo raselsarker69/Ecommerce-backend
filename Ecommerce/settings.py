@@ -1,9 +1,7 @@
 from pathlib import Path
 import os
 from datetime import timedelta
-import environ
-env = environ.Env()
-environ.Env.read_env()
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -21,7 +19,7 @@ DEBUG = True
 
 # csrf trusted origin added
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ['https://ecommerce.onrender.com', 'https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://ecommerce-backend-uqig.onrender.com', 'https://*.127.0.0.1']
 
 
 # Application definition
