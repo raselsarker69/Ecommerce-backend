@@ -20,7 +20,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.select_related('category').all()
     serializer_class = ProductSerializer
     pagination_class = ProductPagination
-    permission_classes = [IsAuthenticated]
+    #permission_classes = [IsAuthenticated]
     filter_backends = [SearchFilter, DjangoFilterBackend, OrderingFilter]
     search_fields = ['name']
     filterset_fields = ['category', 'price']
