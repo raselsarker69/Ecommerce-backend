@@ -58,14 +58,14 @@ class LogoutView(APIView):
                 RefreshToken(refresh_token).blacklist()
                 return Response({'message': 'Successfully logged out.'}, status=status.HTTP_200_OK)
             except Exception as e:
-                logger.error(f"Error blacklisting token: {e}")  # Log the error for debugging
+                logger.error(f"Error blacklisting token: {e}") 
                 return Response({'error': 'Invalid token or token already blacklisted.'}, status=status.HTTP_400_BAD_REQUEST)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 
 # OTP Authentication
-class Varifi_otp_(APIView):
+class VarifyOtpviewset(APIView):
     serializer_class = serializers.OtpTakerSerializer  
 
     def post(self, request):

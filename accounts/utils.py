@@ -8,8 +8,6 @@ import string
 
 
 
-   
-# Email sending.
 def send_link_for_pass_set(email,link):
     try:
         email_id = email
@@ -39,7 +37,6 @@ def send_otp_for_registration(email,otp):
         return False
 
 
-# otp functions
 def generate_otp():
         """Generate a random 4-digit OTP."""
         return random.randint(100000, 999999)  

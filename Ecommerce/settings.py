@@ -24,7 +24,10 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = True
 
 # csrf trusted origin added
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [
+    'localhost',  
+    'ecommerce-backend-uqig.onrender.com',  
+]
 CSRF_TRUSTED_ORIGINS = ['https://ecommerce-backend-uqig.onrender.com', 'https://*.127.0.0.1']
 
 
@@ -62,7 +65,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
 ROOT_URLCONF = 'Ecommerce.urls'
+CORS_ORIGIN_ALLOW_ALL = True
+
 
 TEMPLATES = [
     {
@@ -85,7 +91,7 @@ WSGI_APPLICATION = 'Ecommerce.wsgi.application'
 
 #cors origin added
 CORS_ORIGIN_ALLOW_ALL = True
-CSRF_TRUSTED_ORIGINS = ['https://ecommerce.onrender.com']
+CSRF_TRUSTED_ORIGINS = ['https://ecommerce-backend-uqig.onrender.com']
 
 
 # Database
@@ -244,12 +250,3 @@ SIMPLE_JWT = {
     "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 }
 
-
-
-
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_USE_TLS = True
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = env("EMAIL")
-# EMAIL_HOST_PASSWORD = env("EMAIL_PASSWORD")
