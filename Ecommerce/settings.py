@@ -38,10 +38,12 @@ INSTALLED_APPS = [
     'corsheaders',  
     'rest_framework',
     'rest_framework_simplejwt', 
+    'django_filters',
     
     # Custom apps
     'products',
     'category',
+    'accounts',
     
 ]
 
@@ -85,34 +87,13 @@ CSRF_TRUSTED_ORIGINS = ['https://ecommerce.onrender.com']
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 
-
-# JWT Authentication
-REST_FRAMEWORK = {
-    
-    # Simple JWT Authentication
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
-    
-    
-    # pagination
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10,  # 10 page size for pagination
-    
-    
-    # throttling
-    'DEFAULT_THROTTLE_RATES': {
-        'anon': '100/day',  
-        'user': '1000/day', 
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 # DATABASES = {
@@ -125,6 +106,45 @@ REST_FRAMEWORK = {
 #         'PORT': env("DB_PORT"),
 #     }
 # }
+
+import dj_database_url
+
+DATABASES = {
+     'default': dj_database_url.config(
+      #default= 'postgresql://ecommerce_backend_0b37_user:6w51STCSy6AN1BsDEYUWMAEOqGwKz9BJ@dpg-crvrc9g8fa8c73dt4et0-a.oregon-postgres.render.com/ecommerce_backend_0b37'
+      default= 'postgresql://ecommerce_backend_0b37_user:6w51STCSy6AN1BsDEYUWMAEOqGwKz9BJ@dpg-crvrc9g8fa8c73dt4et0-a/ecommerce_backend_0b37'
+     )
+ }
+
+
+
+# JWT Authentication
+REST_FRAMEWORK = {
+    # Filter backend
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+     
+    # Simple JWT Authentication
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    
+    # Pagination
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,  # 10 page size for pagination
+    
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.UserRateThrottle',
+    ],
+      
+    # Throttling
+    'DEFAULT_THROTTLE_RATES': {
+        'anon': '100/day',  
+        'user': '1000/day', 
+    }
+}
+
+
+
 
 
 # Password validation
@@ -179,11 +199,46 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #AUTH_USER_MODEL = 'accounts.UserModel'
 
 
+
+
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=20),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=15),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
+    "UPDATE_LAST_LOGIN": False,
+
+    "ALGORITHM": "HS256",
+    "SIGNING_KEY": SECRET_KEY,
+    "VERIFYING_KEY": "",
+    "AUDIENCE": None,
+    "ISSUER": None,
+    "JSON_ENCODER": None,
+    "JWK_URL": None,
+    "LEEWAY": 0,
 
     "AUTH_HEADER_TYPES": ("Bearer",),
+    "AUTH_HEADER_NAME": "HTTP_AUTHORIZATION",
+    "USER_ID_FIELD": "id",
+    "USER_ID_CLAIM": "user_id",
+    "USER_AUTHENTICATION_RULE": "rest_framework_simplejwt.authentication.default_user_authentication_rule",
+
+    "AUTH_TOKEN_CLASSES": ("rest_framework_simplejwt.tokens.AccessToken",),
+    "TOKEN_TYPE_CLAIM": "token_type",
+    "TOKEN_USER_CLASS": "rest_framework_simplejwt.models.TokenUser",
+
+    "JTI_CLAIM": "jti",
+
+    "SLIDING_TOKEN_REFRESH_EXP_CLAIM": "refresh_exp",
+    "SLIDING_TOKEN_LIFETIME": timedelta(minutes=5),
+    "SLIDING_TOKEN_REFRESH_LIFETIME": timedelta(days=1),
+
+    "TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.MyTokenObtainPairSerializer",
+    "TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSerializer",
+    "TOKEN_VERIFY_SERIALIZER": "rest_framework_simplejwt.serializers.TokenVerifySerializer",
+    "TOKEN_BLACKLIST_SERIALIZER": "rest_framework_simplejwt.serializers.TokenBlacklistSerializer",
+    "SLIDING_TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainSlidingSerializer",
+    "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 }
 
 

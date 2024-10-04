@@ -4,7 +4,7 @@ from .views import ProductViewSet
 
 
 router = DefaultRouter()
-router.register(r'products', ProductViewSet)
+router.register(r'', ProductViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),

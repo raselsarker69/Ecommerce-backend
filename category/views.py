@@ -10,6 +10,6 @@ from django_filters.rest_framework import DjangoFilterBackend
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    permission_classes = [IsAuthenticated]
+    #permission_classes = [IsAuthenticated]
     filter_backends = [SearchFilter, DjangoFilterBackend]
     search_fields = ['name']

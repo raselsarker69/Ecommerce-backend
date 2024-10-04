@@ -6,6 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.filters import SearchFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter
+from rest_framework.throttling import UserRateThrottle
 
 
 class ProductPagination(PageNumberPagination):
@@ -24,6 +25,7 @@ class ProductViewSet(viewsets.ModelViewSet):
     search_fields = ['name']
     filterset_fields = ['category', 'price']
     ordering_fields = ['name', 'price', 'created_at']  
+    throttle_classes = [UserRateThrottle]
 
     
 
