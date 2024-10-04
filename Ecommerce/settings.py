@@ -2,6 +2,9 @@ from pathlib import Path
 import os
 from datetime import timedelta
 
+# environment
+from dotenv import load_dotenv
+load_dotenv() 
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -12,7 +15,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-uua+_222)zaqgchdec6h*^o2*cp0+bo)v77n^q1&@r+!*0_&wl'
+SECRET_KEY = os.getenv('SECRET_KEY')
+
+# SECRET_KEY = 'django-insecure-uua+_222)zaqgchdec6h*^o2*cp0+bo)v77n^q1&@r+!*0_&wl'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -109,10 +115,10 @@ import dj_database_url
 
 DATABASES = {
      'default': dj_database_url.config(
-      #default= 'postgresql://ecommerce_backend_0b37_user:6w51STCSy6AN1BsDEYUWMAEOqGwKz9BJ@dpg-crvrc9g8fa8c73dt4et0-a.oregon-postgres.render.com/ecommerce_backend_0b37'
-      default= 'postgresql://ecommerce_backend_0b37_user:6w51STCSy6AN1BsDEYUWMAEOqGwKz9BJ@dpg-crvrc9g8fa8c73dt4et0-a/ecommerce_backend_0b37'
+      default=os.getenv('database_link')
      )
  }
+
 
 
 
@@ -140,7 +146,6 @@ REST_FRAMEWORK = {
         'user': '1000/day', 
     }
 }
-
 
 
 
