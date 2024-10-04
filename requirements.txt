@@ -22,6 +22,7 @@ cffi==1.16.0
 charset-normalizer==3.3.2
 click==8.1.7
 colorama==0.4.6
+<<<<<<< HEAD
 comm==0.2.2
 comtypes==1.3.0
 contourpy==1.2.0
@@ -54,6 +55,13 @@ django-taggit==5.0.1
 django-tailwind==3.8.0
 django-templated-mail==1.1.1
 djangorestframework==3.14.0
+=======
+dj-database-url==2.2.0
+Django==5.1.1
+django-filter==23.5
+django-cors-headers==4.4.0
+djangorestframework==3.15.2
+>>>>>>> 2734fad89387fd929405d661728c89919563c456
 djangorestframework-simplejwt==5.3.1
 djoser==2.2.2
 EasyProcess==1.1
@@ -197,6 +205,7 @@ scipy==1.12.0
 seaborn==0.13.2
 Send2Trash==1.8.3
 six==1.16.0
+<<<<<<< HEAD
 sniffio==1.3.1
 social-auth-app-django==5.4.0
 social-auth-core==4.5.3
@@ -237,3 +246,10 @@ wolframalpha==5.0.0
 wrapt==1.14.1
 xmltodict==0.13.0
 yarl==1.9.4
+=======
+sqlparse==0.5.1
+typing_extensions==4.12.2
+tzdata==2024.1
+urllib3==2.2.2
+wcwidth==0.2.13
+>>>>>>> 2734fad89387fd929405d661728c89919563c456
